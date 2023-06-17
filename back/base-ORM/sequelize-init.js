@@ -66,10 +66,6 @@ const veterinarios = sequelize.define(
   }
 );
 
-module.exports = {
-  sequelize,
-  veterinarios,
-};
 
 const consultas = sequelize.define(
   "consultas",
@@ -357,5 +353,5 @@ module.exports = {
   animales,
   clientes,
   alimentos,
-  veterinarios
+  veterinarios,
 };

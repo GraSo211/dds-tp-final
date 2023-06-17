@@ -1,13 +1,28 @@
 const express = require("express");
 const router = express.Router();
-
+const { Op, ValidationError } = require("sequelize");
 const db = require("../base-ORM/sequelize-init");
 
 router.get("/api/veterinarios", async function (req, res, next) {
-  let data = await db.veterinarios.findAll({
-    attributes: ["legajo", "nombre", "matricula", "fechaRegistro", "celular",],
+  let where = {};
+  if (req.query.legajo != undefined && req.query.legajo !== "") {
+    where.legajo = {
+      [Op.like]: "%" + req.query.legajo + "%",
+    };
+  }
+  let items = await db.veterinarios.findAndCountAll({
+    attributes: [
+        "legajo",
+        "nombre",
+        "matricula",
+        "fechaRegistro",
+        "celular"
+    ],
+    order: [["legajo", "ASC"]],
+    where,
   });
-  res.json(data);
+
+  res.json(items.rows);
 });
 
 router.get("/api/veterinarios/:legajo", async function (req, res, next) {

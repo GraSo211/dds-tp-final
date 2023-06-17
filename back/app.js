@@ -1,9 +1,10 @@
 const express = require("express");
-
+const cors = require('cors');
 // crear servidor
 const app = express();
 app.use(express.json());
 require("./base-ORM/sqlite-init");  // crear base si no existe
+app.use(cors());
 
 // controlar ruta
 app.get("/", (req, res) => {
@@ -25,6 +26,7 @@ app.use(animalesRouter);
 const alimentosRouter = require("./routes/alimentos");
 app.use(alimentosRouter);
 
+
 app.get("/", (req, res) => {
   res.send("API Veterinaria :)");
 });
@@ -32,7 +34,7 @@ app.get("/", (req, res) => {
 
 
 if (!module.parent) {
-  const PORT = 3000;
+  const PORT = 3500;
   app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}`);
   });
