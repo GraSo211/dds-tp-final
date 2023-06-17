@@ -80,7 +80,7 @@ async function CrearBDSiNoExiste() {
   if (res.contar > 0) existe = true;
   if (!existe) {
       await db.run(
-          "CREATE TABLE animales( IdAnimal INTEGER PRIMARY KEY AUTOINCREMENT, IdTipoAnimal INTEGER , IdCliente INTEGER NOT NULL, NombreAnimal TEXT NOT NULL, FechaNacAnimal DATE, Peso REAL, FOREIGN KEY(IdTipoAnimal) REFERENCES tipoanimal(IdTipoAnimal), FOREIGN KEY(IdCliente) REFERENCES clientes(IdCliente))"
+          "CREATE TABLE animales( IdAnimal INTEGER PRIMARY KEY AUTOINCREMENT, IdTipoAnimal INTEGER , IdCliente INTEGER NOT NULL, NombreAnimal TEXT NOT NULL, FechaNacAnimal DATE, Peso REAL, FOREIGN KEY(IdTipoAnimal) REFERENCES tipoanimal(IdTipoAnimal), FOREIGN KEY(IdCliente) REFERENCES clientes(Id))"
       );
       
       console.log("Tabla para Animales Creada!");

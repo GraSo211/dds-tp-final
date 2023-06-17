@@ -89,7 +89,7 @@ describe("PUT /api/consultas/:id", () => {
   });
 });
 
-describe("DELETE /api/articulos/:id", () => {
+describe("DELETE /api/consultas/:id", () => {
   it("Deberia devolver la consulta con el IdConsulta 11 borrada", async () => {
     const res = await request(app).delete("/api/consultas/11");
     expect(res.statusCode).toEqual(200);

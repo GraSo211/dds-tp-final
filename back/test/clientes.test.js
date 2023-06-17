@@ -71,17 +71,17 @@ describe("POST /api/clientes", () => {
 });
 
 describe("PUT /api/clientes/:id", () => {
-  it("Deberia devolver al cliente con el id 15 modificado", async () => {
+  it("Deberia devolver al cliente con el id 2 modificado", async () => {
     const res = await request(app)
-      .put("/api/clientes/15")
+      .put("/api/clientes/2")
       .send(clienteModificado);
     expect(res.statusCode).toEqual(200);
   });
 });
 
 describe("DELETE /api/clientes/:id", () => {
-  it("Deberia devolver la consulta con el id 15 borrado", async () => {
-    const res = await request(app).delete("/api/clientes/15");
+  it("Deberia devolver la consulta con el id 3 borrado", async () => {
+    const res = await request(app).delete("/api/clientes/3");
     expect(res.statusCode).toEqual(200);
   });
 });

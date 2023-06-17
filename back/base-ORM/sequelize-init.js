@@ -169,7 +169,7 @@ const animales = sequelize.define(
       type: DataTypes.INTEGER,
       references: {
           model: "clientes",
-          key: "IdCliente",
+          key: "Id",
       },
       validate: {
           notEmpty: {
