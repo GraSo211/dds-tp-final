@@ -58,8 +58,8 @@ router.get("/api/clientes/:id", async function (req, res, next) {
     let filasBorradas = await db.clientes.destroy({
       where: { id: req.params.id },
     });
-    if (filasBorradas == 1) res.sendStatus(200);
-    else res.sendStatus(404);
+    if (filasBorradas == 1) res.status(200).json({message:"Cliente eliminado"});
+    else res.status(404).json({message:"No se pudo eliminar el cliente"});
   });
   
 

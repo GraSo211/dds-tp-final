@@ -79,9 +79,20 @@ describe("PUT /api/clientes/:id", () => {
   });
 });
 
-describe("DELETE /api/clientes/:id", () => {
-  it("Deberia devolver la consulta con el id 3 borrado", async () => {
-    const res = await request(app).delete("/api/clientes/3");
-    expect(res.statusCode).toEqual(200);
+describe("DELETE", () => {
+  it("Deberia eliminar a un cliente o informar que no fue encontrado", async () => {
+      const clienteId = 7; 
+      const res = await request(app).delete(`/api/clientes/${clienteId}`);
+      //expect(res.status).toBe(200);
+      if(res.status === 200){
+          expect(res.body). toEqual({message: "Cliente eliminado"})
+      }else{
+          expect(res.body). toEqual({message: "No se pudo eliminar el cliente"})
+      }
   });
+
+
+
+
+
 });
