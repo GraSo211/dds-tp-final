@@ -1,10 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const { Op, ValidationError } = require("sequelize");
 const db = require("../base-ORM/sequelize-init");
 
 router.get("/api/animales", async (req, res)=> {
+    let where = {};
+    if (req.query.NombreAnimal != undefined && req.query.NombreAnimal !== "") {
+        where.NombreAnimal = {
+            //[Op.like]:req.query.IdAnimal,
+            [Op.like]: "%" + req.query.NombreAnimal + "%",
+        };
+    }
+
     let data = await db.animales.findAll({
     attributes: ["IdAnimal","IdTipoAnimal","IdCliente", "NombreAnimal","FechaNacAnimal", "Peso"],
+    where,
     });
     res.json(data);
 });
