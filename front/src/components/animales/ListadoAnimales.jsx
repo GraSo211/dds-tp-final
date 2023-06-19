@@ -1,5 +1,7 @@
+import FilaAnimal from "./FilaAnimal";
 
-export default function ListadoAnimales({lista}){
+export default function ListadoAnimales({lista, borrar, modificar}){
+
 
     return (
         <div className="container mt-3">
@@ -16,15 +18,10 @@ export default function ListadoAnimales({lista}){
                 </thead>
                 <tbody>
                     {lista.map((animal)=>(
-                        <tr key={animal.IdAnimal}>
-                        <td>{animal.IdAnimal}.</td>
-                        <td>{animal.IdTipoAnimal}</td>
-                        <td>{animal.IdCliente}</td>
-                        <td>{animal.NombreAnimal}</td>
-                        <td>{new Date(animal.FechaNacAnimal).toISOString().split('T')[0]}</td>
-                        <td>{animal.Peso}</td>
-                    </tr>
+
+                        <FilaAnimal lista={animal} borrar={borrar} modificar={modificar}/>
                     ))}
+
                 
 
                 </tbody>

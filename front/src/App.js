@@ -4,7 +4,7 @@ import { Inicio } from './components/Inicio';
 
 import Veterinario from './components/Veterinario';
 
-import Animales from './components/Animales'
+import Animales from './components/animales/Animales'
 
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
