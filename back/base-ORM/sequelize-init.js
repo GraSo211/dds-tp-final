@@ -196,16 +196,7 @@ const animales = sequelize.define(
   },
   },
   {
-  // pasar a mayusculas
-  hooks: {
-      beforeValidate: function (animal, options) {
-      if (typeof animal.NombreAnimal === "string") {
-          animal.NombreAnimal = animal.NombreAnimal.toUpperCase().trim();
-      }
-      },
-  },
-
-  timestamps: false,
+    timestamps: false,
   }
 );
 
@@ -341,6 +332,7 @@ const alimentos = sequelize.define(
       
       },
   },
+  
 
 {
 timestamps: false,
