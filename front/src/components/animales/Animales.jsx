@@ -1,16 +1,22 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {useForm} from 'react-hook-form'
 import ListadoAnimales from "./ListadoAnimales";
 import {alta, baja, modificacion, consulta} from "./AnimalesServices"
 import ModificarAnimal from "./ModificarAnimal"
+import RegistrarAnimal from "./RegistrarAnimal";
 
 export default function Animales(){
 
     const { register, handleSubmit } = useForm();
     const [lista, setLista] = useState(null);
+    const [animalSeleccionado, setAnimalSeleccionado] = useState(null);
+
+    const ventanaRegistrarRef = useRef(null);
+    const [ventanaRegistrarVisible, setVentanaRegistrarVisible] = useState(false);
 
     const [ventanaModificacionVisible, setVentanaModificacionVisible] = useState(false);
-    const [animalSeleccionado, setAnimalSeleccionado] = useState(null);
+    const ventanaModificacionRef = useRef(null);
+
 
     useEffect(() => {
         const obtenerDatos = async () => {
@@ -25,6 +31,31 @@ export default function Animales(){
         obtenerDatos();
     }, []);
 
+    useEffect(() => {
+        if (!ventanaRegistrarVisible) {
+            setAnimalSeleccionado(null);
+        }
+    }, [ventanaRegistrarVisible]);
+
+    useEffect(() => {
+        if (ventanaRegistrarVisible) {
+            ventanaRegistrarRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [ventanaRegistrarVisible]);
+
+
+    useEffect(() => {
+        if (!ventanaModificacionVisible) {
+            setAnimalSeleccionado(null);
+        }
+    }, [ventanaModificacionVisible]);
+
+    useEffect(() => {
+        if (ventanaModificacionVisible) {
+            ventanaModificacionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [ventanaModificacionVisible]);
+
     const onSubmit = async (data) => {
         try {
                 const res = await consulta(data)
@@ -34,6 +65,12 @@ export default function Animales(){
             console.error(error);
         }
     };
+
+    const registrar = async function(){
+        await alta();
+        //const res = await consulta({});
+        //setLista(res.data);
+    }
         
     const borrar = async function(id) {
         await baja(id);
@@ -46,8 +83,15 @@ export default function Animales(){
         cerrarVentanaModificacion();
         const res = await consulta({});
         setLista(res.data);
-
     }
+
+    const abrirVentanaRegistrar = (animal) => {
+        setVentanaRegistrarVisible(true);
+    };
+
+    const cerrarVentanaRegistrar = () => {
+        setVentanaRegistrarVisible(false);
+    };
 
 
     const abrirVentanaModificacion = (animal) => {
@@ -58,6 +102,8 @@ export default function Animales(){
     const cerrarVentanaModificacion = () => {
         setVentanaModificacionVisible(false);
     };
+
+
 
     return(
         <div className="container">
@@ -83,11 +129,13 @@ export default function Animales(){
                     </form>
                     </div>
                 </div>
-                {lista && <ListadoAnimales lista={lista} borrar={borrar} modificar={modificacion} abrirVentanaModificacion={abrirVentanaModificacion}/>}
-                <button className="btn btn-primary mx-auto d-block btn-lg" onClick={alta}>Registrar un Nuevo Animal</button>
+                {lista && <ListadoAnimales lista={lista} borrar={borrar} modificar={modificar} abrirVentanaModificacion={abrirVentanaModificacion}/>}
+                <button className="btn btn-primary mx-auto d-block btn-lg" onClick={abrirVentanaRegistrar}>Registrar un Nuevo Animal</button>
             </div>
             <hr/>
-            {ventanaModificacionVisible && <ModificarAnimal animal={animalSeleccionado} modificar={modificar} cerrarVentanaModificacion={cerrarVentanaModificacion} />}
+            {ventanaRegistrarVisible && <RegistrarAnimal ventanaRegistrarRef={ventanaRegistrarRef} cerrarVentanaRegistrar={cerrarVentanaRegistrar} alta={registrar}/>}
+            
+            {ventanaModificacionVisible && <ModificarAnimal ventanaModificacionRef={ventanaModificacionRef} animal={animalSeleccionado} modificar={modificar} cerrarVentanaModificacion={cerrarVentanaModificacion} />}
         </div>
 
     )
