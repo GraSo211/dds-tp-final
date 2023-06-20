@@ -5,8 +5,10 @@ export default function ModificarAnimal({ventanaModificacionRef, animal, cerrarV
     const { register, handleSubmit, formState:{errors} } = useForm();
 
     const onSubmit = async (data) => {
-        await modificar(data)
+        await modificar(data)  
     };
+
+
 
 
 
@@ -33,7 +35,7 @@ export default function ModificarAnimal({ventanaModificacionRef, animal, cerrarV
             {errors.NombreAnimal && errors.NombreAnimal.type === "pattern" && (<p className="text-danger">El campo debe ser Texto.</p>)}
 
             <label className="form-label">Fecha de Nacimiento:</label>
-            <input type="text" className="form-control" defaultValue={animal.FechaNacAnimal} {...register("FechaNacAnimal", {required:true, pattern: /^\d{4}-\d{2}-\d{2}$/})}/>
+            <input type="text" className="form-control" defaultValue={new Date(animal.FechaNacAnimal).toISOString().split('T')[0]} {...register("FechaNacAnimal", {required:true, pattern: /^\d{4}-\d{2}-\d{2}$/})}/>
             {errors.FechaNacAnimal && errors.FechaNacAnimal.type === "pattern" && (<p className="text-danger">El campo debe tener el formato de fecha YYYY-MM-DD.</p>)}
 
             <label className="form-label">Peso:</label>

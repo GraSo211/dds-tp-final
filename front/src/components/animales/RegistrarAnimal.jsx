@@ -2,11 +2,8 @@ import React from "react";
 import {useForm} from 'react-hook-form';
 export default function RegistrarAnimal({ventanaRegistrarRef, cerrarVentanaRegistrar, alta}){
     const { register, handleSubmit, formState:{errors} } = useForm();
-
     const onSubmit= (data)=>{
         alta(data)
-        console.log(data)
-        console.log("enviamos")
     }
 
     return (
@@ -29,7 +26,7 @@ export default function RegistrarAnimal({ventanaRegistrarRef, cerrarVentanaRegis
                 {errors.NombreAnimal && errors.NombreAnimal.type === "pattern" && (<p className="text-danger">El campo debe ser Texto.</p>)}
 
                 <label className="form-label">Fecha de Nacimiento:</label>
-                <input type="text" className="form-control" placeholder="Fecha Nacimiento" defaultValue={""}  {...register("FechaNacAnimal", {required:true, pattern: /^\d{4}-\d{2}-\d{2}$/})}/>
+                <input type="text" className="form-control" placeholder="Fecha de Nacimiento (Formato: YYYY-MM-DD)" defaultValue={""}  {...register("FechaNacAnimal", {required:true, pattern: /^\d{4}-\d{2}-\d{2}$/})}/>
                 {errors.FechaNacAnimal && errors.FechaNacAnimal.type === "pattern" && (<p className="text-danger">El campo debe tener el formato de fecha YYYY-MM-DD.</p>)}
 
                 <label className="form-label">Peso:</label>

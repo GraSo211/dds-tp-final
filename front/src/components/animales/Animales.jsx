@@ -31,11 +31,6 @@ export default function Animales(){
         obtenerDatos();
     }, []);
 
-    useEffect(() => {
-        if (!ventanaRegistrarVisible) {
-            setAnimalSeleccionado(null);
-        }
-    }, [ventanaRegistrarVisible]);
 
     useEffect(() => {
         if (ventanaRegistrarVisible) {
@@ -66,10 +61,11 @@ export default function Animales(){
         }
     };
 
-    const registrar = async function(){
-        await alta();
-        //const res = await consulta({});
-        //setLista(res.data);
+    const registrar = async function(data){
+        await alta(data);
+        cerrarVentanaRegistrar();
+        const res = await consulta({});
+        setLista(res.data);
     }
         
     const borrar = async function(id) {
@@ -87,6 +83,7 @@ export default function Animales(){
 
     const abrirVentanaRegistrar = (animal) => {
         setVentanaRegistrarVisible(true);
+        setVentanaModificacionVisible(false);
     };
 
     const cerrarVentanaRegistrar = () => {
@@ -95,8 +92,15 @@ export default function Animales(){
 
 
     const abrirVentanaModificacion = (animal) => {
-        setAnimalSeleccionado(animal);
-        setVentanaModificacionVisible(true);
+        if(!ventanaRegistrarVisible){
+            setAnimalSeleccionado(animal);
+            setVentanaModificacionVisible(true);
+        } else {               
+            setAnimalSeleccionado(animal);
+            setVentanaModificacionVisible(true)
+        }
+        
+        setVentanaRegistrarVisible(false);
     };
     
     const cerrarVentanaModificacion = () => {
