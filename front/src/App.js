@@ -2,7 +2,7 @@ import './App.css';
 import {Menu} from './components/Menu';
 import { Inicio } from './components/Inicio';
 
-import Veterinario from './components/Veterinario';
+import Veterinario from './components/veterinario/Veterinarios';
 
 import Animales from './components/animales/Animales'
 

@@ -1,13 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 function Menu() {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-md">
       <div className="container-fluid">
-        {/* <a className="navbar-brand" href="#!">
-          <i>Pymes</i>
-        </a> */}
         <button
           className="navbar-toggler"
           type="button"
@@ -21,36 +19,75 @@ function Menu() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
+          <li className="nav-item">
               <NavLink className="nav-link" to="/inicio">
                 Inicio
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/veterinario">
-                Veterinario
-                
-              </NavLink>
+              <Dropdown>
+                <Dropdown.Toggle as={NavLink} to="/veterinario" id="veterinarioDropdown" className="nav-link">
+                  Veterinario
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={NavLink} to="/veterinario/buscar">Buscar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/veterinario/modificar">Modificar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/veterinario/borrar">Borrar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/veterinario/crear">Crear</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/cliente">
-                Clientes
-              </NavLink>
+            <Dropdown>
+                <Dropdown.Toggle as={NavLink} to="/animales" id="animalesDropdown" className="nav-link">
+                  Animal
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={NavLink} to="/animales/buscar">Buscar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/animales/modificar">Modificar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/animales/borrar">Borrar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/animales/crear">Crear</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/alimento">
-                Alimentos
-              </NavLink>
+            <Dropdown>
+                <Dropdown.Toggle as={NavLink} to="/clientes" id="clientesDropdown" className="nav-link">
+                  Clientes
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={NavLink} to="/clientes/buscar">Buscar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/clientes/modificar">Modificar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/clientes/borrar">Borrar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/clientes/crear">Crear</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/consulta">
-                Consulta
-              </NavLink>
+            <Dropdown>
+                <Dropdown.Toggle as={NavLink} to="/consulta" id="consultaDropdown" className="nav-link">
+                  Consultas
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={NavLink} to="/consulta/buscar">Buscar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/consulta/modificar">Modificar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/consulta/borrar">Borrar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/consulta/crear">Crear</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/animales">
-                Animal
-              </NavLink>
+            <Dropdown>
+                <Dropdown.Toggle as={NavLink} to="/alimento" id="alimentoDropdown" className="nav-link">
+                  Alimentos
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={NavLink} to="/alimento/buscar">Buscar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/alimento/modificar">Modificar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/alimento/borrar">Borrar</Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/alimento/crear">Crear</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </li>
           </ul>
         </div>
@@ -59,4 +96,4 @@ function Menu() {
   );
 }
 
-export {Menu};
+export { Menu };
