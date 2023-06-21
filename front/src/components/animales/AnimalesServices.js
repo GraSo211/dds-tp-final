@@ -1,9 +1,12 @@
 import axios from "axios";
 
-async function alta(data){
-    return await axios.post('http://localhost:3500/api/animales', data)
+async function alta(data) {
+    try {
+        return await axios.post('http://localhost:3500/api/animales/', data);
+    } catch (error) {
+        console.error(error);
+    }
 };
-
 async function baja(id){
     const res = await axios.delete('http://localhost:3500/api/animales/'+id)
     return res.status === 200

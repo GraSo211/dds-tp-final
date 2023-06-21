@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function FilaAnimal({lista, borrar, abrirVentanaModificacion}){
     const { IdAnimal, IdTipoAnimal, IdCliente, NombreAnimal, FechaNacAnimal, Peso } = lista;   
@@ -17,7 +17,6 @@ export default function FilaAnimal({lista, borrar, abrirVentanaModificacion}){
                     <button className="btn primary-btn border m-1" onClick={()=>(borrar(IdAnimal))}>❌</button>
                 </td>
             </tr>
-
         </>
 
     );
