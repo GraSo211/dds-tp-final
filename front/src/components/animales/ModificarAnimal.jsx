@@ -1,17 +1,11 @@
 import { useForm } from "react-hook-form";
 
-
 export default function ModificarAnimal({ventanaModificacionRef, animal, cerrarVentanaModificacion, modificar }) {
     const { register, handleSubmit, formState:{errors} } = useForm();
 
     const onSubmit = async (data) => {
         await modificar(data)  
     };
-
-
-
-
-
 
     return (
     <div ref={ventanaModificacionRef} className="mt-3"> 

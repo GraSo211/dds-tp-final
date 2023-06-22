@@ -15,7 +15,7 @@ export default function ListadoVeterinarios({lista, borrar, abrirVentanaModifica
                     </tr>
                 </thead>
                 <tbody>
-                    {lista.map((veterinario)=>(
+                    {lista && lista.map((veterinario)=>(
 
                         <FilaVeterinario key={veterinario.legajo} lista={veterinario} 
                         borrar={borrar}  abrirVentanaModificacion={abrirVentanaModificacion}/>

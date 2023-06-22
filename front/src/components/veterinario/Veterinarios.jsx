@@ -1,16 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {useForm} from 'react-hook-form'
 import ListadoVeterinarios from "./ListadoVeterinarios";
-import {alta, baja, modificacion, consulta} from "./VeterinariosServices"
-import ModificarVeter from "./ModificarVeterinario"
+import {alta, baja, modificacion, consulta} from "./VeterinariosServices";
+import RegistrarVeter from "./RegistrarVeterinario";
+import ModificarVeterinario from "./ModificarVeterinario";
 
 export default function Veterinarios(){
 
     const { register, handleSubmit } = useForm();
     const [lista, setLista] = useState(null);
+    const [veterSeleccionado, setVeterSeleccionado] = useState(null);
+
+    const ventanaRegistrarRef = useRef(null);
+    const [ventanaRegistrarVisible, setVentanaRegistrarVisible] = useState(false);
 
     const [ventanaModificacionVisible, setVentanaModificacionVisible] = useState(false);
-    const [veterinarioSeleccionado, setVeterinarioSeleccionado] = useState(null);
+    const ventanaModificacionRef = useRef(null);
 
     useEffect(() => {
         const obtenerDatos = async () => {
@@ -25,6 +30,26 @@ export default function Veterinarios(){
         obtenerDatos();
     }, []);
 
+
+    useEffect(() => {
+        if (ventanaRegistrarVisible) {
+            ventanaRegistrarRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [ventanaRegistrarVisible]);
+
+
+    useEffect(() => {
+        if (!ventanaModificacionVisible) {
+            setVeterSeleccionado(null);
+        }
+    }, [ventanaModificacionVisible]);
+
+    useEffect(() => {
+        if (ventanaModificacionVisible) {
+            ventanaModificacionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [ventanaModificacionVisible]);
+
     const onSubmit = async (data) => {
         try {
                 const res = await consulta(data)
@@ -34,6 +59,12 @@ export default function Veterinarios(){
             console.error(error);
         }
     };
+    const registrar = async function(data){
+        await alta(data);
+        cerrarVentanaRegistrar();
+        const res = await consulta({});
+        setLista(res.data);
+    }
         
     const borrar = async function(legajo) {
         await baja(legajo);
@@ -46,18 +77,34 @@ export default function Veterinarios(){
         cerrarVentanaModificacion();
         const res = await consulta({});
         setLista(res.data);
-
     }
 
+    const abrirVentanaRegistrar = (veter) => {
+        setVentanaRegistrarVisible(true);
+        setVentanaModificacionVisible(false);
+    };
 
-    const abrirVentanaModificacion = (veterinario) => {
-        setVeterinarioSeleccionado(veterinario);
-        setVentanaModificacionVisible(true);
+    const cerrarVentanaRegistrar = () => {
+        setVentanaRegistrarVisible(false);
+    };
+
+
+    const abrirVentanaModificacion = (veter) => {
+        if(!ventanaRegistrarVisible){
+            setVeterSeleccionado(veter);
+            setVentanaModificacionVisible(true);
+        } else {               
+            setVeterSeleccionado(veter);
+            setVentanaModificacionVisible(true)
+        }
+        
+        setVentanaRegistrarVisible(false);
     };
     
     const cerrarVentanaModificacion = () => {
         setVentanaModificacionVisible(false);
     };
+
 
     return(
         <div className="container">
@@ -84,10 +131,12 @@ export default function Veterinarios(){
                     </div>
                 </div>
                 {lista && <ListadoVeterinarios lista={lista} borrar={borrar} modificar={modificacion} abrirVentanaModificacion={abrirVentanaModificacion}/>}
-                <button className="btn btn-primary mx-auto d-block btn-lg" onClick={alta}>Registrar un Nuevo Veterinario</button>
+                <button className="btn btn-primary mx-auto d-block btn-lg" onClick={abrirVentanaRegistrar}>Registrar un Nuevo Veterinario</button>
             </div>
             <hr/>
-            {ventanaModificacionVisible && <ModificarVeter veterinario={veterinarioSeleccionado} modificar={modificar} cerrarVentanaModificacion={cerrarVentanaModificacion} />}
+            {ventanaRegistrarVisible && <RegistrarVeter ventanaRegistrarRef={ventanaRegistrarRef} cerrarVentanaRegistrar={cerrarVentanaRegistrar} alta={registrar}/>}
+            
+            {ventanaModificacionVisible && <ModificarVeterinario ventanaModificacionRef={ventanaModificacionRef} veter={veterSeleccionado} modificar={modificar} cerrarVentanaModificacion={cerrarVentanaModificacion} />}
         </div>
 
     )
