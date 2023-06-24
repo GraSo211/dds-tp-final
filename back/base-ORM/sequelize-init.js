@@ -18,8 +18,8 @@ const veterinarios = sequelize.define(
             msg: "El Nombre es Requerido",
           },
           len: {
-            args: [5, 120],
-            msg: "El Nombre debe ser tipo caracter, entre 5 y 120 de longitud",
+            args: [2, 120],
+            msg: "El Nombre debe ser tipo caracter, entre 2 y 120 de longitud",
           },
         },
       },
