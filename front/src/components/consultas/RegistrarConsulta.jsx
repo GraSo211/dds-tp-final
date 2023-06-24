@@ -18,11 +18,11 @@ export default function RegistrarConsulta({ventanaRegistrarRef, cerrarVentanaReg
 
                 <label className="form-label">Fecha:</label>
                 <input type="text" className="form-control" defaultValue={""} {...register("Fecha",{required:true, pattern: /^\d{4}-\d{2}-\d{2}$/ })} />
-                {errors.Fecha && errors.Fecha.type === "pattern" && (<p className="text-danger">El campo debe tener el formato de fecha YYYY-MM-DD hh:mm.</p>)}
+                {errors.Fecha && errors.Fecha.type === "pattern" && (<p className="text-danger">El campo debe tener el formato de fecha YYYY-MM-DD.</p>)}
 
                 <label className="form-label">Observación:</label>
-                <input type="text" className="form-control" defaultValue={""} {...register("Observacion")}/>
-                {errors.Observacion && errors.Observacion.type === "pattern" && (<p className="text-danger">El campo debe ser Texto.</p>)}
+                <input type="text" className="form-control" defaultValue={""} {...register("Observacion", {required:true, maxLength:50})}/>
+                {errors.Observacion && errors.Observacion.type === "pattern" && (<p className="text-danger">El campo debe ser Texto, no mayor a 50 caracteres.</p>)}
 
                 <label className="form-label">Precio:</label>
                 <input type="text" className="form-control" defaultValue={""} {...register("Precio", {required:true, pattern: /^\d{2,5}/})}/>
