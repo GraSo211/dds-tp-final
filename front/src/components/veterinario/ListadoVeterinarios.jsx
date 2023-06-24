@@ -8,9 +8,9 @@ export default function ListadoVeterinarios({lista, borrar, abrirVentanaModifica
                 <thead>
                     <tr className="text-center">
                     <td>Legajo</td>
-                    <td>Nombre</td>
+                    <td>Apellido Nombre</td>
                     <td>Matricula</td>
-                    <td>FechaRegistro</td>
+                    <td>Fecha Registro</td>
                     <td>Celular</td>
                     </tr>
                 </thead>
