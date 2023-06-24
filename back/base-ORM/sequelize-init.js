@@ -77,7 +77,7 @@ const consultas = sequelize.define(
       autoIncrementIdentity: true,
     },
     FechaHora: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         notEmpty: {

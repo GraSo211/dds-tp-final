@@ -27,16 +27,16 @@ async function CrearBDSiNoExiste() {
     console.log("Tabla Consultas creada! :D");
     await db.run(
       `insert into consultas values 
-        (1,'2023-05-25 10:32:12.000 +00:00','Estaba resfriado, se receto medicamento',150.07,7,4,1245),
-        (2,'2023-05-25 11:24:33.000 +00:00','Tenia una astilla en la pata, se retiro y receto medicamento',150.07,2,5,1456),
-        (3,'2023-05-25 14:14:14.000 +00:00','Problemas estomacales, se receto medicamento',150.07,5,8,1890),
-        (4,'2023-05-26 08:32:55.000 +00:00','Estaba resfriado, se receto medicamento',150.07,4,9,1458),
-        (5,'2023-05-26 10:44:26.000 +00:00','Control de rutina',150.07,6,3,1280),
-        (6,'2023-05-26 11:40:17.000 +00:00','Control de rutina',150.07,2,5,1254),
-        (7,'2023-05-26 15:22:55.000 +00:00','Tenia una herida en la pata, se curo y receto medicamento',150.07,1,7,1268),
-        (8,'2023-05-27 10:32:12.000 +00:00','Estaba resfriado, se receto medicamento',150.07,9,1,1220),
-        (9,'2023-05-27 12:04:24.000 +00:00','Control de rutina',150.07,3,6,1281),
-        (10,'2023-05-27 18:47:55.000 +00:00','Problemas estomacales, se receto medicamento',125.12,8,8,1239)
+        (1,'2023-05-25','Estaba resfriado, se receto medicamento',150.07,7,4,1245),
+        (2,'2023-05-25','Tenia una astilla en la pata, se retiro y receto medicamento',150.07,2,5,1456),
+        (3,'2023-05-25','Problemas estomacales, se receto medicamento',150.07,5,8,1890),
+        (4,'2023-05-26','Estaba resfriado, se receto medicamento',150.07,4,9,1458),
+        (5,'2023-05-26','Control de rutina',150.07,6,3,1280),
+        (6,'2023-05-26','Control de rutina',150.07,2,5,1254),
+        (7,'2023-05-26','Tenia una herida en la pata, se curo y receto medicamento',150.07,1,7,1268),
+        (8,'2023-05-27','Estaba resfriado, se receto medicamento',150.07,9,1,1220),
+        (9,'2023-05-27','Control de rutina',150.07,3,6,1281),
+        (10,'2023-05-27','Problemas estomacales, se receto medicamento',125.12,8,8,1239)
       `
     );
   }
