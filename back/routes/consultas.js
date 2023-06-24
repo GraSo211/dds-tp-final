@@ -1,28 +1,37 @@
 const express = require("express");
 const router = express.Router();
-
+const { Op, ValidationError } = require("sequelize");
 const db = require("../base-ORM/sequelize-init");
 
 router.get("/api/consultas", async function (req, res, next) {
-  let data = await db.consultas.findAll({
+  let where = {};
+  if (req.query.IdConsulta != undefined && req.query.IdConsulta !== "") {
+    where.IdConsulta = {
+      [Op.like]: "%" + req.query.IdConsulta + "%",
+    };
+  }
+  let items = await db.consultas.findAndCountAll({
     attributes: [
       "IdConsulta",
-      "FechaHora",
+      "Fecha",
       "Observacion",
       "Precio",
       "IdMascota",
       "IdCliente",
       "LegajoVeter",
     ],
+    order: [["IdConsulta", "ASC"]],
+    where,
   });
-  res.json(data);
+
+  res.json(items.rows);
 });
 
 router.get("/api/consultas/:id", async function (req, res, next) {
   let data = await db.consultas.findAll({
     attributes: [
       "IdConsulta",
-      "FechaHora",
+      "Fecha",
       "Observacion",
       "Precio",
       "IdMascota",
@@ -37,7 +46,7 @@ router.get("/api/consultas/:id", async function (req, res, next) {
 
 router.post("/api/consultas/", async (req, res) => {
   let data = await db.consultas.create({
-    FechaHora: req.body.FechaHora,
+    Fecha: req.body.Fecha,
     Observacion: req.body.Observacion,
     Precio: req.body.Precio,
     IdMascota: req.body.IdMascota,
@@ -51,7 +60,7 @@ router.put("/api/consultas/:id", async (req, res) => {
   let item = await db.consultas.findOne({
     attributes: [
       "IdConsulta",
-      "FechaHora",
+      "Fecha",
       "Observacion",
       "Precio",
       "IdMascota",
@@ -64,7 +73,7 @@ router.put("/api/consultas/:id", async (req, res) => {
     res.status(404).json({ message: "Consulta no encontrada :(" });
     return;
   }
-  (item.FechaHora = req.body.FechaHora),
+  (item.Fecha = req.body.Fecha),
     (item.Observacion = req.body.Observacion),
     (item.Precio = req.body.Precio),
     (item.IdMascota = req.body.IdMascota),

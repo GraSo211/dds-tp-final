@@ -40,7 +40,7 @@ function Menu() {
                 </NavLink>
             </li>
             <li className="nav-item">
-                <NavLink to="/consulta" id="consulta" className="nav-link">
+                <NavLink to="/consultas" id="consulta" className="nav-link">
                   Consultas
                 </NavLink>
             </li>

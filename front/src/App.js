@@ -6,6 +6,8 @@ import Veterinario from './components/veterinario/Veterinarios';
 
 import Animales from './components/animales/Animales'
 
+import Consultas from './components/consultas/Consultas'
+
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ListadoVeterinarios from './components/veterinario/ListadoVeterinarios';
 import Veterinarios from './components/veterinario/Veterinarios';
@@ -23,6 +25,8 @@ function App() {
               <Route path="/veterinario/buscar" element={<Veterinarios />} />
 
               <Route path="/animales" element={<Animales />} />
+
+              <Route path="/consultas" element={<Consultas />} />
 
               <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>

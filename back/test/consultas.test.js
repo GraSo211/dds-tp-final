@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 
 const consulta = {
-  FechaHora: new Date().toISOString(),
+  Fecha: new Date().toISOString(),
   Observacion: "Malestar estomacal, se receto medicamento",
   Precio: 150.07,
   IdMascota: 1,
@@ -11,7 +11,7 @@ const consulta = {
 };
 const consultaModificada = {
   IdConsulta: 1313,
-  FechaHora: new Date().toISOString(),
+  Fecha: new Date().toISOString(),
   Observacion: "Malestar estomacal, se receto medicamento",
   Precio: 160.14,
   IdMascota: 8,
@@ -32,7 +32,7 @@ describe("GET /api/consultas", function () {
       expect.arrayContaining([
         expect.objectContaining({
           IdConsulta: expect.any(Number),
-          FechaHora: expect.any(String),
+          Fecha: expect.any(String),
           Observacion: expect.any(String),
           Precio: expect.any(Number),
           IdMascota: expect.any(Number),
@@ -51,7 +51,7 @@ describe("GET /api/consultas/:id", () => {
     expect(res.body).toEqual(
       expect.objectContaining({
         IdConsulta: expect.any(Number),
-        FechaHora: expect.any(String),
+        Fecha: expect.any(String),
         Observacion: expect.any(String),
         Precio: expect.any(Number),
         IdMascota: expect.any(Number),
@@ -69,7 +69,7 @@ describe("POST /api/consultas", () => {
     expect(res.body).toEqual(
       expect.objectContaining({
         IdConsulta: expect.any(Number),
-        FechaHora: expect.any(String),
+        Fecha: expect.any(String),
         Observacion: expect.any(String),
         Precio: expect.any(Number),
         IdMascota: expect.any(Number),
