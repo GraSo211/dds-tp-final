@@ -25,7 +25,7 @@ export default function RegistrarConsulta({ventanaRegistrarRef, cerrarVentanaReg
                 {errors.Observacion && errors.Observacion.type === "pattern" && (<p className="text-danger">El campo debe ser Texto.</p>)}
 
                 <label className="form-label">Precio:</label>
-                <input type="text" className="form-control" defaultValue={""} {...register("Precio", {required:true, pattern: /^\d{1,4}\.\d{2}$/})}/>
+                <input type="text" className="form-control" defaultValue={""} {...register("Precio", {required:true, pattern: /^\d{2,5}/})}/>
                 {errors.Precio && errors.Precio.type === "pattern" && (<p className="text-danger">El campo debe contener un valor numérico</p>)}
 
                 <label className="form-label">IdMascota:</label>

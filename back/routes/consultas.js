@@ -83,6 +83,24 @@ router.put("/api/consultas/:id", async (req, res) => {
   res.sendStatus(200);
 });
 
+router.put("/api/veterinarios/:legajo", async (req, res) => {
+  let item = await db.veterinarios.findOne({
+      attributes: ["Legajo", "Nombre", "Matricula", "FechaRegistro", "Celular",],
+      where: { legajo: req.params.legajo },
+  });
+  if (!item) {
+    res.status(404).json({ message: "Veterinario no encontrado!! :(" });
+    return;
+  }
+    (item.legajo = req.body.legajo),
+    (item.nombre = req.body.nombre),
+    (item.matricula = req.body.matricula),
+    (item.fechaRegistro = req.body.fechaRegistro),
+    (item.celular = req.body.celular),  
+        await item.save();
+  res.sendStatus(200);
+});
+
 router.delete("/api/consultas/:id", async (req, res) => {
   let filasBorradas = await db.consultas.destroy({
     where: { IdConsulta: req.params.id },

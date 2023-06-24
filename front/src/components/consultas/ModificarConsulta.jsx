@@ -25,8 +25,8 @@ export default function ModificarConsulta({ventanaModificacionRef, consulta, cer
             {errors.Observacion && errors.Observacion.type === "pattern" && (<p className="text-danger">El campo debe ser Texto.</p>)}
 
             <label className="form-label">Precio:</label>
-            <input type="text" className="form-control" defaultValue={consulta.Precio} {...register("Precio", {required:true, pattern: /^\d{1,4}\.\d{2}$/})}/>
-            {errors.Precio && errors.Precio.type === "pattern" && (<p className="text-danger">El campo debe contener un valor numérico, en el formato 100.00, con 2 decimales.</p>)}
+            <input type="text" className="form-control" defaultValue={consulta.Precio} {...register("Precio", {required:true, pattern: /^\d{2,5}$/})}/>
+            {errors.Precio && errors.Precio.type === "pattern" && (<p className="text-danger">El campo debe contener un valor numérico s</p>)}
 
             <label className="form-label">IdMascota:</label>
             <input type="text" className="form-control" defaultValue={consulta.IdMascota} {...register("IdMascota", {required:true, pattern: /^\d{1,5}$/})}/>
