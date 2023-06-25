@@ -21,7 +21,7 @@ export default function ModificarConsulta({ventanaModificacionRef, consulta, cer
             {errors.Fecha && errors.Fecha.type === "pattern" && (<p className="text-danger">El campo debe tener el formato de fecha YYYY-MM-DD.</p>)}
 
             <label className="form-label">Observación:</label>
-            <input type="text" className="form-control" defaultValue={""} {...register("Observacion", {required:true, maxLength:50})}/>
+            <input type="text" className="form-control" defaultValue={consulta.Observacion} {...register("Observacion", {required:true, maxLength:50})}/>
             {errors.Observacion && errors.Observacion.type === "pattern" && (<p className="text-danger">El campo debe ser Texto, no mayor a 50 caracteres.</p>)}
 
             <label className="form-label">Precio:</label>
