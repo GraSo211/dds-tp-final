@@ -21,19 +21,19 @@ export default function ModificarConsulta({ventanaModificacionRef, consulta, cer
             {errors.Fecha && errors.Fecha.type === "pattern" && (<p className="text-danger">El campo debe tener el formato de fecha YYYY-MM-DD.</p>)}
 
             <label className="form-label">Observación:</label>
-            <input type="text" className="form-control" defaultValue={consulta.Observacion} {...register("Observacion", {required:true, maxLength:50})}/>
+            <input type="text" className="form-control" defaultValue={""} {...register("Observacion", {required:true, maxLength:50})}/>
             {errors.Observacion && errors.Observacion.type === "pattern" && (<p className="text-danger">El campo debe ser Texto, no mayor a 50 caracteres.</p>)}
 
             <label className="form-label">Precio:</label>
             <input type="text" className="form-control" defaultValue={consulta.Precio} {...register("Precio", {required:true, pattern: /^\d{2,5}$/})}/>
-            {errors.Precio && errors.Precio.type === "pattern" && (<p className="text-danger">El campo debe contener un valor de almenos 2 digitos</p>)}
+            {errors.Precio && errors.Precio.type === "pattern" && (<p className="text-danger">El campo debe contener un valor numérico</p>)}
 
             <label className="form-label">IdMascota:</label>
-            <input type="text" readOnly className="form-control" defaultValue={consulta.IdMascota} {...register("IdMascota", {required:true, pattern: /^\d{1,5}$/})}/>
+            <input type="text" className="form-control" defaultValue={consulta.IdMascota} {...register("IdMascota", {required:true, pattern: /^\d{1,5}$/})}/>
             {errors.IdMascota && errors.IdMascota.type === "pattern" && (<p className="text-danger">El campo debe contener un valor numérico</p>)}
 
             <label className="form-label">IdCliente:</label>
-            <input type="text" readOnly className="form-control" defaultValue={consulta.IdCliente} {...register("IdCliente", {required:true, pattern: /^\d{1,5}$/})}/>
+            <input type="text" className="form-control" defaultValue={consulta.IdCliente} {...register("IdCliente", {required:true, pattern: /^\d{1,5}$/})}/>
             {errors.IdCliente && errors.IdCliente.type === "pattern" && (<p className="text-danger">El campo debe contener un valor numérico</p>)}
 
             <label className="form-label">LegajoVeter:</label>
@@ -42,13 +42,14 @@ export default function ModificarConsulta({ventanaModificacionRef, consulta, cer
 
             <br />
 
-            <button type="submit" className="btn btn-secondary m-1" >
-            Guardar
-            </button>
-            <button type="button" className="btn btn-secondary m-1" onClick={cerrarVentanaModificacion}>
-            Volver
-            </button>
-
+            <div className="d-flex">
+                <button type="submit" className="btn btn-dark m-1 w-50" >
+                Guardar
+                </button>
+                <button type="button" className="btn btn-dark m-1 w-50" onClick={cerrarVentanaModificacion}>
+                Volver
+                </button>
+            </div>
 
         </form>
     </div>   
