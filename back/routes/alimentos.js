@@ -1,14 +1,30 @@
 const express = require("express");
 const router = express.Router();
-
+const { Op, ValidationError } = require("sequelize");
 const db = require("../base-ORM/sequelize-init");
 
 router.get("/api/alimentos", async function (req, res, next) {
-  let data = await db.alimentos.findAll({
-    attributes: ["IdAlimento", "Marca", "PrecioKilo","FechaLote","Recomendada",],
+  let where = {};
+  if (req.query.IdAlimento != undefined && req.query.IdAlimento !== "") {
+    where.IdAlimento = {
+      [Op.like]: "%" + req.query.IdAlimento + "%",
+    };
+  }
+  let items = await db.alimentos.findAndCountAll({
+    attributes: [
+      "IdAlimento",
+      "Marca",
+      "PrecioKilo",
+      "FechaLote",
+      "Recomendada",
+    ],
+    order: [["IdAlimento", "ASC"]],
+    where,
   });
-  res.json(data);
+
+  res.json(items.rows);
 });
+
 
 
 router.get("/api/alimentos/:id", async function (req, res, next) {
