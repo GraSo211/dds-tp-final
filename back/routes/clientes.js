@@ -1,14 +1,21 @@
 const express = require("express");
 const router = express.Router();
-
+const { Op, ValidationError } = require("sequelize");
 const db = require("../base-ORM/sequelize-init");
 
 router.get("/api/clientes", async function (req, res, next) {
-  let data = await db.clientes.findAll({
-    attributes: ["id", "apellido", "nombre", "fechaNacimiento", "direccion"],
+    let where = {};
+    if (req.query.id != undefined && req.query.id !== "") {
+      where.id = {
+        [Op.like]: "%" + req.query.id + "%",
+      };
+    }
+    let data = await db.clientes.findAll({
+      attributes: ["id", "apellido", "nombre", "fechaNacimiento", "direccion"],
+      where,
+      });
+      res.json(data);
   });
-  res.json(data);
-});
 
 
 router.get("/api/clientes/:id", async function (req, res, next) {
