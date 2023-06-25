@@ -108,33 +108,24 @@ export default function Consultas(){
 
 
     return(
-        <div className="container">
-            <h1>Consultas</h1>
-            <hr/>
-
-
+        <div className="container mb-5">
             <div>
-                <div className="card mb-3">
-                    <div className="card-body">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <h2 className="form-title text-center">
-                            BUSCAR CONSULTA
-                        </h2>
-                        <hr/>
-                        <div className="mb-3">
-                            <label className="form-label">IdConsulta: </label>
-                            <input type="text" className="form-control" {...register('IdConsulta')} />
+                <div className="card mb-3 p-0 border-0">
+                    <div className="card-body p-0">
+                    <form onSubmit={handleSubmit(onSubmit)} className="d-flex">
+                        <div className="mb-3 d-flex justify-content-around w-100 h-25">
+                            <label className="form-label fw-bold">IdConsulta: </label>
+                            <input type="text" className="form-control w-50" {...register('IdConsulta')} />
+                            <button type="submit" className="btn bg-dark w-25 h-25 text-light" >
+                            Buscar
+                            </button>
                         </div>
-                        <button type="submit" className="btn btn-primary" >
-                        Buscar
-                        </button>
                     </form>
                     </div>
                 </div>
                 {lista && <ListadoConsultas lista={lista} borrar={borrar} modificar={modificacion} abrirVentanaModificacion={abrirVentanaModificacion}/>}
-                <button className="btn btn-primary mx-auto d-block btn-lg" onClick={abrirVentanaRegistrar}>Registrar una Nueva Consulta</button>
+                <button className="btn btn-dark mx-auto d-block btn-lg " onClick={abrirVentanaRegistrar}>Registrar una Nueva Consulta</button>
             </div>
-            <hr/>
             {ventanaRegistrarVisible && <RegistrarConsulta ventanaRegistrarRef={ventanaRegistrarRef} cerrarVentanaRegistrar={cerrarVentanaRegistrar} alta={registrar}/>}
             
             {ventanaModificacionVisible && <ModificarConsulta ventanaModificacionRef={ventanaModificacionRef} consulta ={ConsultaSeleccionada} modificar={modificar} cerrarVentanaModificacion={cerrarVentanaModificacion} />}

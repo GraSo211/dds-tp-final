@@ -13,7 +13,7 @@ export default function FilaConsulta({lista, borrar, abrirVentanaModificacion}){
                 <td>{IdMascota}</td>
                 <td>{IdCliente}</td>
                 <td>{LegajoVeter}</td>
-                <td>
+                <td className="d-flex">
                     <button className="btn primary-btn border m-1" 
                     onClick={()=> abrirVentanaModificacion(lista)}>✏️</button>
                     
