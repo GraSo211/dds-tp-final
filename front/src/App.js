@@ -3,6 +3,7 @@ import {Menu} from './components/Menu';
 import { Inicio } from './components/Inicio';
 
 import Clientes from './components/clientes/Clientes'
+import Alimento from './components/alimentos/Alimentos'
 
 import Animales from './components/animales/Animales'
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/animales" element={<Animales />} />
               <Route path="/clientes" element={<Clientes />} />
               <Route path="/consultas" element={<Consultas />} />
+              <Route path="/alimento" element={<Alimento />} />
 
               <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>

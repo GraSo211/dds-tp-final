@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useRef} from "react";
 import {useForm} from 'react-hook-form'
 import ListadoAlimentos from "./ListadoAlimentos";
-import {alta, baja, modificacion, consulta} from "./AlimentosServices"
+import {alta, baja, modificacion, consulta} from "./AlimentosSevices"
 import ModificarAlimento from "./ModificarAlimento"
-import RegistrarAlimento from "./RegistrarAlimento";
+import RegistrarAlimento from "./RegistarAlimento";
 
 export default function Alimento(){
 

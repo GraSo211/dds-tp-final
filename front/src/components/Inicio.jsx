@@ -3,7 +3,12 @@ import React from "react";
 function Inicio() {
   return (
     <div className="container">
-      <div className="container w-100 p-2">
+      <h1>Inicio</h1>
+      <hr />
+      <div
+        className="mt-4 p-5 rounded"
+        style={{ backgroundColor: "lightgray" }}
+      >
         <h3>Trabajo Practico Integrador</h3>
         <h5>Etapa 2 - FrontEnd</h5><br></br>
         <div>
@@ -16,8 +21,6 @@ function Inicio() {
           <p>El uso de paginación, o inicio de sesión se plantea como opcional y cada grupo es libre de implementar dichos conceptos o no. De estar correctamente implementados suman y si no se implementan no restan.</p>
 
         </div>
-      </div>
-      <div className="container w-100 p-2 pt-5">
         <table className="table table-striped square border border-3 border-dark text-center">
           <tr className="bg-dark">
             <th colSpan={3}>
@@ -30,22 +33,22 @@ function Inicio() {
             <th className="text-light w-25">Tabla</th>
           </tr>
           <tr>
-            <td className="p-2"></td>
+            <td className="p-2">88534</td>
             <td className="p-2">David Nass</td>
             <td className="p-2">Veterinarios</td>
           </tr>
           <tr>
-            <td className="p-2"></td>
+            <td className="p-2">90029</td>
             <td className="p-2">Santiago Tomás Gramaglia Sola</td>
             <td className="p-2">Animales</td>
           </tr>
           <tr>
-            <td className="p-2"></td>
+            <td className="p-2">51618</td>
             <td className="p-2">Johanna Ochoa</td>
             <td className="p-2">Clientes</td>
           </tr>
           <tr>
-            <td className="p-2"></td>
+            <td className="p-2">88618</td>
             <td className="p-2">Daniel Barrionuevo</td>
             <td className="p-2">Alimentos</td>
           </tr>
@@ -55,7 +58,6 @@ function Inicio() {
             <td className="p-2">Consultas</td>
           </tr>
         </table>
-        <img src="../perritos.png" className="h-25" />
       </div>
     </div>
   );
